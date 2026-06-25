@@ -1,0 +1,58 @@
+<!doctype html>
+<!--
+File Name     : login-preview.html
+Version       : v0.1.0
+Created       : 2026-06-25
+Last Modified : 2026-06-25
+Author        : Nouramon Alvestrasza
+Organization  : Alvestrasza Corporation
+Description   : Static preview page for the A-Corp Keycloak login theme.
+-->
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>A-Corp Login Preview</title>
+  <link rel="stylesheet" href="../themes/acorp-login/login/resources/css/acorp-login.css">
+  <style>
+    .preview-card-label {
+      margin: -0.35rem 0 1.25rem;
+      color: var(--acorp-muted);
+      font-size: 0.82rem;
+      line-height: 1.6;
+      text-align: center;
+    }
+    .preview-form-group { margin-bottom: 1rem; }
+    .preview-links {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 0.85rem 0 1.35rem;
+      font-size: 0.86rem;
+    }
+  </style>
+</head>
+<body>
+  <main class="login-pf-page">
+    <section class="card-pf" aria-label="A-Corp Login Preview">
+      <h1 id="kc-page-title">Anmelden</h1>
+      <p class="preview-card-label">Alvestrasza Corporation</p>
+      <form>
+        <div class="preview-form-group">
+          <label for="username">Benutzername oder E-Mail</label>
+          <input id="username" type="text" placeholder="name@example.com">
+        </div>
+        <div class="preview-form-group">
+          <label for="password">Kennwort</label>
+          <input id="password" type="password" placeholder="••••••••">
+        </div>
+        <div class="preview-links">
+          <label><input type="checkbox"> Angemeldet bleiben</label>
+          <a href="#">Kennwort vergessen?</a>
+        </div>
+        <button id="kc-login" type="button">Anmelden</button>
+      </form>
+    </section>
+  </main>
+</body>
+</html>

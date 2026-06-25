@@ -1,0 +1,285 @@
+/*
+File Name     : acorp-login.css
+Version       : v0.1.0
+Created       : 2026-06-25
+Last Modified : 2026-06-25
+Author        : Nouramon Alvestrasza
+Organization  : Alvestrasza Corporation
+Description   : Slim A-Corp corporate styling for the Keycloak login theme.
+*/
+
+:root {
+  --acorp-deepspace: #071018;
+  --acorp-void: #04090e;
+  --acorp-panel-blue: #0b1721;
+  --acorp-text-white: #f1f4f5;
+  --acorp-silver: #c5cdd0;
+  --acorp-crimson: #d4483e;
+  --acorp-muted: #8b9aa1;
+  --acorp-border: rgba(197, 205, 208, 0.18);
+  --acorp-border-soft: rgba(197, 205, 208, 0.08);
+  --acorp-panel: rgba(7, 16, 24, 0.84);
+  --acorp-panel-strong: rgba(11, 23, 33, 0.94);
+  --acorp-shadow-panel: 0 24px 80px rgba(0, 0, 0, 0.42);
+  --acorp-emblem: url("../img/alvestrasza-emblem-transparent.png");
+  --acorp-font-body: Inter, "Segoe UI", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  --acorp-font-headline: Cinzel, Georgia, "Times New Roman", serif;
+}
+
+html,
+body {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  color: var(--acorp-text-white);
+  font-family: var(--acorp-font-body);
+  background-color: var(--acorp-void);
+  background-image:
+    radial-gradient(circle at 50% 0%, rgba(197, 205, 208, 0.10), transparent 32rem),
+    radial-gradient(circle at 78% 18%, rgba(212, 72, 62, 0.14), transparent 24rem),
+    linear-gradient(180deg, rgba(4, 9, 14, 0.98), rgba(7, 16, 24, 0.94) 52%, rgba(4, 9, 14, 1));
+  background-attachment: fixed;
+}
+
+/* Hide default realm branding. The page should not expose the realm name. */
+#kc-header,
+#kc-header-wrapper,
+.kc-logo-text,
+.pf-v5-c-login__header,
+.pf-c-login__header {
+  display: none !important;
+}
+
+.login-pf-page,
+.pf-v5-c-login,
+.pf-c-login {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(1.5rem, 4vw, 4rem);
+  background: transparent;
+}
+
+.login-pf-page::before,
+.pf-v5-c-login::before,
+.pf-c-login::before {
+  content: "";
+  position: fixed;
+  top: clamp(2rem, 6vh, 4.5rem);
+  left: 50%;
+  width: clamp(4.25rem, 8vw, 5.75rem);
+  height: clamp(4.25rem, 8vw, 5.75rem);
+  transform: translateX(-50%);
+  background-image: var(--acorp-emblem);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  filter: drop-shadow(0 0 22px rgba(197, 205, 208, 0.22));
+  opacity: 0.95;
+  pointer-events: none;
+}
+
+.card-pf,
+.pf-v5-c-login__main,
+.pf-c-login__main {
+  width: min(100%, 26.5rem);
+  margin: clamp(5rem, 14vh, 8rem) auto 0;
+  padding: clamp(1.65rem, 4vw, 2.3rem);
+  color: var(--acorp-text-white);
+  background:
+    linear-gradient(180deg, rgba(11, 23, 33, 0.96), rgba(7, 16, 24, 0.90)),
+    var(--acorp-panel-strong);
+  border: 1px solid var(--acorp-border);
+  border-radius: 0.75rem;
+  box-shadow: var(--acorp-shadow-panel);
+  backdrop-filter: blur(18px);
+}
+
+#kc-content,
+#kc-content-wrapper,
+#kc-form,
+#kc-form-wrapper {
+  width: 100%;
+}
+
+#kc-page-title,
+.pf-v5-c-login__main-header,
+.pf-c-login__main-header {
+  margin: 0 0 1.65rem;
+  color: var(--acorp-text-white);
+  font-family: var(--acorp-font-headline);
+  font-size: clamp(1.25rem, 2.2vw, 1.55rem);
+  font-weight: 500;
+  letter-spacing: 0.13em;
+  line-height: 1.25;
+  text-align: center;
+  text-transform: uppercase;
+  text-shadow: 0 0 20px rgba(255, 255, 255, 0.12);
+}
+
+#kc-page-title::after {
+  content: "";
+  display: block;
+  width: 4.5rem;
+  height: 1px;
+  margin: 1rem auto 0;
+  background: var(--acorp-crimson);
+  box-shadow: 0 0 14px rgba(212, 72, 62, 0.35);
+}
+
+label,
+.pf-v5-c-form__label,
+.pf-c-form__label {
+  color: var(--acorp-silver);
+  font-size: 0.82rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="number"],
+.pf-v5-c-form-control,
+.pf-c-form-control {
+  min-height: 2.9rem;
+  color: var(--acorp-text-white) !important;
+  background-color: rgba(4, 9, 14, 0.72) !important;
+  border: 1px solid rgba(197, 205, 208, 0.22) !important;
+  border-radius: 0.45rem !important;
+  box-shadow: none !important;
+  transition: border-color 160ms ease, box-shadow 160ms ease, background-color 160ms ease;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus,
+input[type="number"]:focus,
+.pf-v5-c-form-control:focus,
+.pf-c-form-control:focus {
+  background-color: rgba(4, 9, 14, 0.88) !important;
+  border-color: rgba(212, 72, 62, 0.74) !important;
+  box-shadow: 0 0 0 3px rgba(212, 72, 62, 0.18), 0 0 22px rgba(212, 72, 62, 0.12) !important;
+  outline: none !important;
+}
+
+input::placeholder {
+  color: rgba(197, 205, 208, 0.56);
+}
+
+.pf-v5-c-button.pf-m-primary,
+.pf-c-button.pf-m-primary,
+#kc-login,
+input[type="submit"] {
+  width: 100%;
+  min-height: 3rem;
+  color: var(--acorp-text-white) !important;
+  background: rgba(212, 72, 62, 0.88) !important;
+  border: 1px solid rgba(212, 72, 62, 0.95) !important;
+  border-radius: 0.45rem !important;
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  box-shadow: 0 0 20px rgba(212, 72, 62, 0.22);
+  transition: background 160ms ease, border-color 160ms ease, box-shadow 160ms ease, transform 160ms ease;
+}
+
+.pf-v5-c-button.pf-m-primary:hover,
+.pf-v5-c-button.pf-m-primary:focus,
+.pf-c-button.pf-m-primary:hover,
+.pf-c-button.pf-m-primary:focus,
+#kc-login:hover,
+#kc-login:focus,
+input[type="submit"]:hover,
+input[type="submit"]:focus {
+  background: rgba(212, 72, 62, 1) !important;
+  border-color: var(--acorp-crimson) !important;
+  box-shadow: 0 0 26px rgba(212, 72, 62, 0.32);
+  transform: translateY(-1px);
+}
+
+a,
+.pf-v5-c-button.pf-m-link,
+.pf-c-button.pf-m-link {
+  color: var(--acorp-silver) !important;
+  text-decoration: none !important;
+  transition: color 160ms ease, opacity 160ms ease;
+}
+
+a:hover,
+a:focus,
+.pf-v5-c-button.pf-m-link:hover,
+.pf-v5-c-button.pf-m-link:focus,
+.pf-c-button.pf-m-link:hover,
+.pf-c-button.pf-m-link:focus {
+  color: var(--acorp-crimson) !important;
+}
+
+#kc-form-options,
+#kc-registration,
+#kc-info,
+#kc-social-providers,
+.pf-v5-c-login__main-footer,
+.pf-c-login__main-footer {
+  color: var(--acorp-muted);
+  font-size: 0.88rem;
+}
+
+#kc-info-wrapper {
+  margin-top: 1rem;
+  padding: 0;
+  background: transparent;
+}
+
+.pf-v5-c-alert,
+.pf-c-alert,
+.alert {
+  margin-bottom: 1.25rem;
+  color: var(--acorp-text-white);
+  background: rgba(212, 72, 62, 0.12) !important;
+  border: 1px solid rgba(212, 72, 62, 0.36) !important;
+  border-radius: 0.45rem;
+  box-shadow: 0 0 18px rgba(212, 72, 62, 0.12);
+}
+
+.pf-v5-c-check__label,
+.pf-c-check__label {
+  color: var(--acorp-silver);
+  text-transform: none;
+  letter-spacing: normal;
+}
+
+#kc-social-providers ul,
+#kc-social-providers li {
+  list-style: none;
+  padding-left: 0;
+}
+
+#kc-social-providers .pf-v5-c-button,
+#kc-social-providers .pf-c-button {
+  color: var(--acorp-text-white) !important;
+  background: rgba(5, 12, 18, 0.62) !important;
+  border: 1px solid rgba(197, 205, 208, 0.26) !important;
+  border-radius: 0.45rem !important;
+}
+
+@media (max-width: 37.5rem) {
+  .login-pf-page,
+  .pf-v5-c-login,
+  .pf-c-login {
+    align-items: flex-start;
+    padding: 1.25rem;
+  }
+
+  .card-pf,
+  .pf-v5-c-login__main,
+  .pf-c-login__main {
+    margin-top: 6.25rem;
+    padding: 1.35rem;
+  }
+}

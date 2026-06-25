@@ -1,0 +1,24 @@
+# File Name     : docker-compose.yml
+# Version       : v0.1.0
+# Created       : 2026-06-25
+# Last Modified : 2026-06-25
+# Author        : Nouramon Alvestrasza
+# Organization  : Alvestrasza Corporation
+# Description   : Local Keycloak test environment with mounted A-Corp login theme.
+
+services:
+  keycloak:
+    image: ${KEYCLOAK_IMAGE:-quay.io/keycloak/keycloak:latest}
+    container_name: acorp-keycloak-theme-test
+    command:
+      - start-dev
+      - --spi-theme-static-max-age=-1
+      - --spi-theme-cache-themes=false
+      - --spi-theme-cache-templates=false
+    environment:
+      KC_BOOTSTRAP_ADMIN_USERNAME: admin
+      KC_BOOTSTRAP_ADMIN_PASSWORD: admin
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./themes:/opt/keycloak/themes:ro
