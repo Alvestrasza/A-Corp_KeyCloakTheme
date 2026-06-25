@@ -446,3 +446,23 @@ a:focus,
   }
 }
 
+html.login-pf,
+html.login-pf body,
+body {
+  outline: 12px solid #d4483e !important;
+}
+
+html.login-pf body::before {
+  content: "A-CORP CSS ACTIVE";
+  position: fixed;
+  top: 16px;
+  left: 16px;
+  z-index: 2147483647;
+  padding: 10px 14px;
+  color: #f1f4f5;
+  background: #d4483e;
+  border: 2px solid #c5cdd0;
+  border-radius: 6px;
+  font: 800 13px/1.2 system-ui, sans-serif;
+  letter-spacing: 0.08em;
+}
