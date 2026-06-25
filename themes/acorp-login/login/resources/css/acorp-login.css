@@ -1,11 +1,11 @@
 /*
 File Name     : acorp-login.css
-Version       : v0.1.1
+Version       : v0.1.2
 Created       : 2026-06-25
 Last Modified : 2026-06-25
 Author        : Nouramon Alvestrasza
 Organization  : Alvestrasza Corporation
-Description   : Hardened A-Corp corporate styling for the Keycloak login theme using the public website colors, logo and background image.
+Description   : Clean A-Corp corporate styling for the Keycloak login theme using the public website colors, logo and background image.
 */
 
 :root {
@@ -16,13 +16,15 @@ Description   : Hardened A-Corp corporate styling for the Keycloak login theme u
   --acorp-silver: #c5cdd0;
   --acorp-crimson: #d4483e;
   --acorp-muted: #8b9aa1;
-  --acorp-border: rgba(197, 205, 208, 0.18);
+
+  --acorp-border: rgba(197, 205, 208, 0.20);
   --acorp-border-strong: rgba(197, 205, 208, 0.34);
-  --acorp-panel: rgba(7, 16, 24, 0.90);
   --acorp-panel-strong: rgba(11, 23, 33, 0.96);
-  --acorp-shadow-panel: 0 24px 80px rgba(0, 0, 0, 0.46);
+  --acorp-shadow-panel: 0 24px 80px rgba(0, 0, 0, 0.50);
+
   --acorp-background: url("../img/background.webp");
   --acorp-emblem: url("../img/alvestrasza-emblem-transparent.png");
+
   --acorp-font-body: Inter, "Segoe UI", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
   --acorp-font-headline: Cinzel, Georgia, "Times New Roman", serif;
 }
@@ -34,6 +36,10 @@ Description   : Hardened A-Corp corporate styling for the Keycloak login theme u
 }
 
 html,
+body {
+  min-height: 100%;
+}
+
 body,
 body.login-pf,
 .login-pf body {
@@ -43,12 +49,13 @@ body.login-pf,
   font-family: var(--acorp-font-body) !important;
   background-color: var(--acorp-void) !important;
   background-image:
-    linear-gradient(180deg, rgba(4, 9, 14, 0.78), rgba(4, 9, 14, 0.91)),
-    radial-gradient(circle at 50% 0%, rgba(197, 205, 208, 0.10), transparent 34rem),
-    radial-gradient(circle at 78% 18%, rgba(212, 72, 62, 0.13), transparent 26rem),
+    linear-gradient(
+      rgba(6, 15, 28, 0.74),
+      rgba(6, 15, 28, 0.90)
+    ),
     var(--acorp-background) !important;
-  background-size: cover, auto, auto, cover !important;
-  background-position: center, center top, right top, center !important;
+  background-size: cover !important;
+  background-position: center !important;
   background-repeat: no-repeat !important;
   background-attachment: fixed !important;
 }
@@ -65,6 +72,7 @@ body.login-pf,
   display: none !important;
 }
 
+/* Full page alignment. */
 .login-pf-page,
 .pf-c-login,
 .pf-v5-c-login {
@@ -72,10 +80,22 @@ body.login-pf,
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
-  padding: clamp(1.25rem, 4vw, 3rem) !important;
+  padding: clamp(1.25rem, 3vw, 3rem) !important;
   background: transparent !important;
 }
 
+/* Neutralize default pseudo-elements from parent themes. */
+.login-pf-page::before,
+.login-pf-page::after,
+.pf-c-login::before,
+.pf-c-login::after,
+.pf-v5-c-login::before,
+.pf-v5-c-login::after {
+  display: none !important;
+  content: none !important;
+}
+
+/* Keep all inner Keycloak containers inside the slim card. */
 #kc-container,
 #kc-container-wrapper,
 #kc-content,
@@ -83,56 +103,65 @@ body.login-pf,
 #kc-form,
 #kc-form-wrapper,
 #kc-form-login,
+#kc-form-login .form-group,
+#kc-form-login .pf-c-form__group,
+#kc-form-login .pf-v5-c-form__group,
 .login-pf-page .login-pf-accounts,
 .login-pf-page .login-pf-social {
   width: 100% !important;
   max-width: 100% !important;
+  min-width: 0 !important;
+  background: transparent !important;
 }
 
-/* Slim central login card. This is intentionally stronger than the PatternFly defaults. */
+/* Slim central login card. */
 .card-pf,
 .login-pf-page .card-pf,
 #kc-form-card,
 .pf-c-login__main,
 .pf-v5-c-login__main {
   position: relative !important;
-  width: min(100%, 25.5rem) !important;
+  width: 100% !important;
   max-width: 25.5rem !important;
+  min-width: 0 !important;
   margin: 0 auto !important;
-  padding: 6.1rem 2.05rem 2.05rem !important;
+  padding: 2rem 2rem 1.75rem !important;
   color: var(--acorp-text-white) !important;
   background:
-    linear-gradient(180deg, rgba(11, 23, 33, 0.98), rgba(7, 16, 24, 0.93)),
+    linear-gradient(
+      180deg,
+      rgba(11, 23, 33, 0.98),
+      rgba(7, 16, 24, 0.94)
+    ),
     var(--acorp-panel-strong) !important;
   border: 1px solid var(--acorp-border) !important;
-  border-radius: 0.82rem !important;
+  border-top: 1px solid var(--acorp-border-strong) !important;
+  border-radius: 0.85rem !important;
   box-shadow: var(--acorp-shadow-panel) !important;
   backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
 }
 
-/* Logo inside the card, not in the hidden realm header. */
+/* A-Corp emblem inside the card. */
 .card-pf::before,
 .login-pf-page .card-pf::before,
 #kc-form-card::before,
 .pf-c-login__main::before,
 .pf-v5-c-login__main::before {
-  content: "";
-  position: absolute;
-  top: 1.55rem;
-  left: 50%;
-  width: 4.25rem;
-  height: 4.25rem;
-  transform: translateX(-50%);
-  background-image: var(--acorp-emblem);
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: contain;
-  filter: drop-shadow(0 0 22px rgba(197, 205, 208, 0.26));
-  opacity: 0.98;
-  pointer-events: none;
+  content: "" !important;
+  display: block !important;
+  width: 5.1rem !important;
+  height: 5.1rem !important;
+  margin: 0 auto 1.3rem !important;
+  background-image: var(--acorp-emblem) !important;
+  background-repeat: no-repeat !important;
+  background-position: center !important;
+  background-size: contain !important;
+  filter: drop-shadow(0 0 22px rgba(197, 205, 208, 0.26)) !important;
+  opacity: 0.98 !important;
+  pointer-events: none !important;
 }
 
+/* Titles. */
 #kc-page-title,
 .login-pf-header,
 .pf-c-login__main-header,
@@ -160,6 +189,7 @@ body.login-pf,
   box-shadow: 0 0 14px rgba(212, 72, 62, 0.35);
 }
 
+/* Form layout. */
 .form-group,
 .pf-c-form__group,
 .pf-v5-c-form__group {
@@ -178,10 +208,15 @@ label,
   text-transform: uppercase !important;
 }
 
+/* Inputs. */
 input[type="text"],
 input[type="email"],
 input[type="password"],
 input[type="number"],
+#username,
+#password,
+#password-new,
+#password-confirm,
 .form-control,
 .pf-c-form-control,
 .pf-v5-c-form-control,
@@ -189,6 +224,7 @@ input[type="number"],
 .pf-c-input-group,
 .pf-v5-c-input-group {
   width: 100% !important;
+  max-width: 100% !important;
   min-height: 2.78rem !important;
   color: var(--acorp-text-white) !important;
   background-color: rgba(4, 9, 14, 0.78) !important;
@@ -201,6 +237,10 @@ input[type="text"],
 input[type="email"],
 input[type="password"],
 input[type="number"],
+#username,
+#password,
+#password-new,
+#password-confirm,
 .form-control,
 .pf-c-form-control,
 .pf-v5-c-form-control {
@@ -212,6 +252,10 @@ input[type="text"]:focus,
 input[type="email"]:focus,
 input[type="password"]:focus,
 input[type="number"]:focus,
+#username:focus,
+#password:focus,
+#password-new:focus,
+#password-confirm:focus,
 .form-control:focus,
 .pf-c-form-control:focus,
 .pf-v5-c-form-control:focus,
@@ -221,7 +265,9 @@ input[type="number"]:focus,
   color: var(--acorp-text-white) !important;
   background-color: rgba(4, 9, 14, 0.92) !important;
   border-color: rgba(212, 72, 62, 0.78) !important;
-  box-shadow: 0 0 0 3px rgba(212, 72, 62, 0.18), 0 0 22px rgba(212, 72, 62, 0.12) !important;
+  box-shadow:
+    0 0 0 3px rgba(212, 72, 62, 0.18),
+    0 0 22px rgba(212, 72, 62, 0.12) !important;
   outline: none !important;
 }
 
@@ -229,15 +275,19 @@ input::placeholder {
   color: rgba(197, 205, 208, 0.55) !important;
 }
 
+/* Password reveal button and input groups. */
 .pf-c-input-group button,
 .pf-v5-c-input-group button,
 .pf-c-input-group .pf-c-button,
-.pf-v5-c-input-group .pf-v5-c-button {
+.pf-v5-c-input-group .pf-v5-c-button,
+.input-group-addon,
+.input-group button {
   color: var(--acorp-silver) !important;
   background: rgba(4, 9, 14, 0.78) !important;
   border-color: rgba(197, 205, 208, 0.25) !important;
 }
 
+/* Primary action. */
 #kc-login,
 input[type="submit"],
 button[type="submit"],
@@ -256,7 +306,11 @@ button[type="submit"],
   letter-spacing: 0.16em !important;
   text-transform: uppercase !important;
   box-shadow: 0 0 20px rgba(212, 72, 62, 0.22) !important;
-  transition: background 160ms ease, border-color 160ms ease, box-shadow 160ms ease, transform 160ms ease !important;
+  transition:
+    background 160ms ease,
+    border-color 160ms ease,
+    box-shadow 160ms ease,
+    transform 160ms ease !important;
 }
 
 #kc-login:hover,
@@ -277,6 +331,7 @@ button[type="submit"]:focus,
   transform: translateY(-1px);
 }
 
+/* Links. */
 a,
 .pf-c-button.pf-m-link,
 .pf-v5-c-button.pf-m-link,
@@ -285,7 +340,9 @@ a,
 #kc-info a {
   color: var(--acorp-silver) !important;
   text-decoration: none !important;
-  transition: color 160ms ease, opacity 160ms ease !important;
+  transition:
+    color 160ms ease,
+    opacity 160ms ease !important;
 }
 
 a:hover,
@@ -300,6 +357,7 @@ a:focus,
   color: var(--acorp-crimson) !important;
 }
 
+/* Secondary areas. */
 #kc-form-options,
 #kc-registration,
 #kc-info,
@@ -317,6 +375,7 @@ a:focus,
   padding: 0 !important;
 }
 
+/* Alerts. */
 .pf-c-alert,
 .pf-v5-c-alert,
 .alert,
@@ -332,6 +391,7 @@ a:focus,
   box-shadow: 0 0 18px rgba(212, 72, 62, 0.12) !important;
 }
 
+/* Checkboxes. */
 .pf-c-check__label,
 .pf-v5-c-check__label,
 .checkbox label {
@@ -340,6 +400,7 @@ a:focus,
   letter-spacing: normal !important;
 }
 
+/* Social providers. */
 #kc-social-providers ul,
 #kc-social-providers li {
   list-style: none !important;
@@ -355,11 +416,7 @@ a:focus,
   border-radius: 0.46rem !important;
 }
 
-/* Remove the old debug marker, if it was appended during troubleshooting. */
-body::after {
-  content: none !important;
-}
-
+/* Mobile layout. */
 @media (max-width: 37.5rem) {
   .login-pf-page,
   .pf-c-login,
@@ -375,6 +432,16 @@ body::after {
   .pf-v5-c-login__main {
     width: 100% !important;
     max-width: 100% !important;
-    padding: 5.85rem 1.35rem 1.45rem !important;
+    padding: 1.65rem 1.35rem 1.45rem !important;
+  }
+
+  .card-pf::before,
+  .login-pf-page .card-pf::before,
+  #kc-form-card::before,
+  .pf-c-login__main::before,
+  .pf-v5-c-login__main::before {
+    width: 4.4rem !important;
+    height: 4.4rem !important;
+    margin-bottom: 1rem !important;
   }
 }
