@@ -102,7 +102,7 @@ For production, pin the Keycloak container image version instead of using `lates
 Copy the theme folder to your Keycloak themes directory:
 
 ```bash
-sudo cp -r themes/acorp-login /opt/keycloak/themes/acorp-login
+sudo cp -r /tmp/acorp-login /opt/keycloak/themes/acorp-login
 sudo /opt/keycloak/bin/kc.sh build
 sudo systemctl restart keycloak
 ```
