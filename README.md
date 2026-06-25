@@ -102,9 +102,18 @@ For production, pin the Keycloak container image version instead of using `lates
 Copy the theme folder to your Keycloak themes directory:
 
 ```bash
-sudo cp -r /tmp/acorp-login /opt/keycloak/themes/acorp-login
-sudo /opt/keycloak/bin/kc.sh build
-sudo systemctl restart keycloak
+sudo systemctl stop keycloak
+
+sudo rm -rf /opt/keycloak/themes/acorp-login
+sudo cp -rf /tmp/acorp-login /opt/keycloak/themes/acorp-login
+
+sudo chown -R keycloak:keycloak /opt/keycloak/themes/acorp-login
+sudo find /opt/keycloak/themes/acorp-login -type d -exec chmod 755 {} \;
+sudo find /opt/keycloak/themes/acorp-login -type f -exec chmod 644 {} \;
+
+sudo rm -rf /opt/keycloak/data/tmp/kc-gzip-cache
+
+sudo systemctl start keycloak
 ```
 
 Then select the theme in the realm settings.
